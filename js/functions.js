@@ -41,7 +41,7 @@ function isPalindromeTwo (string) {
 }
 isPalindromeTwo('ДовОд');
 
-function isPalindromeTwo (string) {
+function isPalindromeThree (string) {
 string = string.toLowerCase();
 let check = '';
   for (let i = string.length - 1; i >= 0; i--) {
@@ -49,7 +49,7 @@ let check = '';
   }
   return string == check;
 }
-isPalindromeTwo('Кекс');
+isPalindromeThree('Кекс');
 
 const getTypeNumber = (string) => {
   let result = '';
