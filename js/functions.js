@@ -26,7 +26,7 @@ function isPalindrome (string) {
     check += string[i];
   }
   // eslint-disable-next-line eqeqeq
-  return string == check;
+  return string === check;
 }
 isPalindrome('топот');
 
@@ -37,111 +37,111 @@ function isPalindromeTwo (string) {
     check += string[i];
   }
   // eslint-disable-next-line eqeqeq
-  return string == check;
+  return string === check;
 }
 isPalindromeTwo('ДовОд');
 
 function isPalindromeThree (string) {
-string = string.toLowerCase();
-let check = '';
+  string = string.toLowerCase();
+  let check = '';
   for (let i = string.length - 1; i >= 0; i--) {
     check += string[i];
   }
-  return string == check;
+  return string === check;
 }
 isPalindromeThree('Кекс');
 
 const getTypeNumber = (string) => {
   let result = '';
   for (let i = 0; i < string.length; i++) {
-  if (!Number.isNaN(parseInt(string.at(i), 10))) {
-  result += string.at(i);
-  }
+    if (!Number.isNaN(parseInt(string.at(i), 10))) {
+      result += string.at(i);
+    }
   }
   return parseInt(result, 10);
+};
+
+getTypeNumber('2023 год');
+
+
+const getTypeNumberTwo = (string) => {
+  let result = '';
+  for (let i = 0; i < string.length; i++) {
+    if (!Number.isNaN(parseInt(string.at(i), 10))) {
+      result += string.at(i);
+    }
   }
+  return parseInt(result, 10);
+};
 
-  getTypeNumber('2023 год')
+getTypeNumberTwo('ECMAScript 2022');
 
-
-  const getTypeNumberTwo = (string) => {
-    let result = '';
-    for (let i = 0; i < string.length; i++) {
+const getTypeNumberThree = (string) => {
+  let result = '';
+  for (let i = 0; i < string.length; i++) {
     if (!Number.isNaN(parseInt(string.at(i), 10))) {
-    result += string.at(i);
+      result += string.at(i);
     }
-    }
-    return parseInt(result, 10);
-    }
-
-  getTypeNumberTwo('ECMAScript 2022')
-
-  const getTypeNumberThree = (string) => {
-    let result = '';
-    for (let i = 0; i < string.length; i++) {
-    if (!Number.isNaN(parseInt(string.at(i), 10))) {
-    result += string.at(i);
-    }
-    }
-    return parseInt(result, 10);
-    }
-
-  getTypeNumberThree('1 кефир, 0.5 батона')
-
-
-  const getTypeNumberFour = (string) => {
-    let result = '';
-    for (let i = 0; i < string.length; i++) {
-    if (!Number.isNaN(parseInt(string.at(i), 10))) {
-    result += string.at(i);
-    }
-    }
-    return parseInt(result, 10);
-    }
-
-  getTypeNumberFour('а я томат')
-
-  const solutionOne = (string, minLength, pad) => {
-    const actualPad = minLength - string.length;
-    if (actualPad<=0) {
-      return string;
-    }
-    return pad.slice(0,actualPad % pad.length) + pad.repeat(actualPad / pad.length) + string;
   }
-  solutionOne('1', 2, '0')
+  return parseInt(result, 10);
+};
 
-  const solutionTwo = (string, minLength, pad) => {
-    const actualPad = minLength - string.length;
-    return actualPad <= 0
+getTypeNumberThree('1 кефир, 0.5 батона');
+
+
+const getTypeNumberFour = (string) => {
+  let result = '';
+  for (let i = 0; i < string.length; i++) {
+    if (!Number.isNaN(parseInt(string.at(i), 10))) {
+      result += string.at(i);
+    }
+  }
+  return parseInt(result, 10);
+};
+
+getTypeNumberFour('а я томат');
+
+const solutionOne = (string, minLength, pad) => {
+  const actualPad = minLength - string.length;
+  if (actualPad <= 0) {
+    return string;
+  }
+  return pad.slice(0,actualPad % pad.length) + pad.repeat(actualPad / pad.length) + string;
+};
+solutionOne('1', 2, '0');
+
+const solutionTwo = (string, minLength, pad) => {
+  const actualPad = minLength - string.length;
+  return actualPad <= 0
     ? string
     : pad.slice(0, actualPad % pad.length) + pad.repeat(actualPad / pad.length) + string;
-  }
+};
 
-  solutionTwo('1',4,'0')
+solutionTwo('1',4,'0');
 
-  const solutionThree = (string, minLength, pad) => {
-    const actualPad = minLength - string.length;
-    if (actualPad<=0) {
-      return string;
-    }
-    return pad.slice(0,actualPad % pad.length) + pad.repeat(actualPad / pad.length) + string;
+const solutionThree = (string, minLength, pad) => {
+  const actualPad = minLength - string.length;
+  if (actualPad <= 0) {
+    return string;
   }
-  solutionThree('q', 4, 'werty')
+  return pad.slice(0,actualPad % pad.length) + pad.repeat(actualPad / pad.length) + string;
+};
+solutionThree('q', 4, 'werty');
 
-  const solutionFour = (string, minLength, pad) => {
-    const actualPad = minLength - string.length;
-    if (actualPad<=0) {
-      return string;
-    }
-    return pad.slice(0,actualPad % pad.length) + pad.repeat(actualPad / pad.length) + string;
+const solutionFour = (string, minLength, pad) => {
+  const actualPad = minLength - string.length;
+  if (actualPad <= 0) {
+    return string;
   }
-  solutionFour('q', 4, 'we')
+  return pad.slice(0,actualPad % pad.length) + pad.repeat(actualPad / pad.length) + string;
+};
+solutionFour('q', 4, 'we');
 
-  const solutionFive = (string, minLength, pad) => {
-    const actualPad = minLength - string.length;
-    if (actualPad<=0) {
-      return string;
-    }
-    return pad.slice(0,actualPad % pad.length) + pad.repeat(actualPad / pad.length) + string;
+const solutionFive = (string, minLength, pad) => {
+  const actualPad = minLength - string.length;
+  if (actualPad <= 0) {
+    return string;
   }
-  solutionFive('qwerty', 4, '0')
+  return pad.slice(0,actualPad % pad.length) + pad.repeat(actualPad / pad.length) + string;
+};
+solutionFive('qwerty', 4, '0');
