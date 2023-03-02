@@ -4,7 +4,6 @@ import {getRandomArrayNumber} from './util.js';
 import {fillTheArray} from './data.js';
 // eslint-disable-next-line no-console
 console.log(
-  fillTheArray()
-);
+  fillTheArray);
 // eslint-disable-next-line no-console
 console.log('main.js');
