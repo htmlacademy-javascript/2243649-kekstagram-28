@@ -55,8 +55,8 @@ const createElement = () => ({
   id: getRandomArrayNumber(IDS),
   url: getRandomArrayNumber(URLS),
   description: getRandomArrayNumber(DESCRIPTIONS),
-  like: getRandomArrayNumber(LIKES),
-  comment: getRandomArrayNumber(COMMENTS),
+  likes: getRandomArrayNumber(LIKES),
+  comments: getRandomArrayNumber(COMMENTS),
 });
 
 const fillTheArray = Array.from({length: FILLTHEARRAY_COUNT}, createElement);
