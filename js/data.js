@@ -56,14 +56,13 @@ const createElement = () => ({
   url: getRandomArrayNumber(URLS),
   description: getRandomArrayNumber(DESCRIPTIONS),
   likes: getRandomArrayNumber(LIKES),
-  comments: getRandomArrayNumber(COMMENTS),
+  comments: COMMENTS,
 });
 
 const fillTheArray = Array.from({length: FILLTHEARRAY_COUNT}, createElement);
+
 // eslint-disable-next-line no-console
 console.log(fillTheArray);
-// eslint-disable-next-line no-console
-
 // eslint-disable-next-line no-console
 console.log('data.js');
 export {fillTheArray};

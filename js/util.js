@@ -1,11 +1,31 @@
+// Функция получения случайного числа
 const getRandomNumber = (a, b) => {
   const lower = Math.ceil(Math.min(a, b));
   const upper = Math.floor(Math.max(a, b));
-  // eslint-disable-next-line space-infix-ops
-  const result = Math.random() * (upper-lower+1) + lower;
+  const result = Math.random() * (upper - lower + 1) + lower;
   return Math.floor(result);
 };
 
+//Получение случайного числа из массива
 const getRandomArrayNumber = (elements) => elements[getRandomNumber(0, elements.length - 1)];
 
-export {getRandomArrayNumber};
+//Функция для уникального числа
+const getUniqueNumber = (min, max) => {
+  const previousValues = [];
+  return function () {
+    let currentValue = getRandomNumber(min, max);
+    if (previousValues.length > (max - min + 1)) {
+      return null;
+    }
+    while (previousValues.includes(currentValue)) {
+      currentValue = getRandomNumber(min, max);
+    }
+    previousValues.push(currentValue);
+    return currentValue;
+  };
+};
+
+//Функция проверки нажатой клавиши ESC
+const isEscapeKey = (evt) => evt.key === 'Escape';
+
+export {getRandomArrayNumber, getUniqueNumber, isEscapeKey};
