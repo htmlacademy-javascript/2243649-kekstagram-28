@@ -8,7 +8,8 @@ const getRandomNumber = (a, b) => {
 
 //Получение случайного числа из массива
 const getRandomArrayNumber = (elements) => elements[getRandomNumber(0, elements.length - 1)];
-//
+
+//Функция для генерации ID изображений
 const createIdGenerator = () => {
   let lastGeneratedId = 0;
 
