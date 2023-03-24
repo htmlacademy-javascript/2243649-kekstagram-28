@@ -45,20 +45,19 @@ document.addEventListener('DOMContentLoaded', () => {
       bigPictureLikes.textContent = kekstagramPost.likes;
       bigPictureComments.textContent = kekstagramPost.comments.length;
       bigPictureDescription.textContent = kekstagramPost.description;
-console.log(kekstagramPost);
       bigPicture.classList.remove('hidden');
       getSocialComment(kekstagramPost.comments);
       body.classList.add('modal-open');
       document.addEventListener('keydown', onDocumentEscKeydown);
     }
     //Комментарии
-      const getCommentItem = (element) => {
+    const getCommentItem = (element) => {
       socialComments.textContent = '';
       const socialComment = document.createElement('li');
       socialComment.classList.add('social__comment');
       const socialCommentImg = document.createElement('img');
       socialCommentImg.classList.add('social__picture');
-      socialComment.src = element.avatar;
+      socialCommentImg.src = element.avatar;
       socialComment.alt = element.name;
       socialComment.width = SIZE;
       socialComment.height = SIZE;
@@ -80,7 +79,6 @@ console.log(kekstagramPost);
         socialComments.textContent = '';
         commentsToShowCount += STEP;
         quantityComment += STEP;
-        console.log(elements)
         const commentsToShow = elements.slice(0, commentsToShowCount);
         commentsToShow.forEach((element) => {
           getCommentItem(element);
@@ -111,9 +109,9 @@ console.log(kekstagramPost);
 
     function closeUserModal () {
       bigPicture.classList.add('hidden');
-      //8.15 убрали класс у счётчика комментариев и загрузки новых комментариев
-      /*socialComments.classList.remove('hidden');
-      commentsLoader.classList.remove('hidden');*/
+      //8.15 убираем класс у счётчика комментариев и загрузки новых комментариев
+      //socialCommentsCount.classList.remove('hidden');
+      //commentsLoader.classList.remove('hidden');
 
       body.classList.remove('modal-open');
       document.removeEventListener('keydown', onDocumentEscKeydown);
@@ -123,20 +121,9 @@ console.log(kekstagramPost);
       closeUserModal();
     });
 
-    closeBigPicture.addEventListener('keydown', (evt) => {
-      if(isEnterKey(evt)) {
-        closeUserModal();
-      }
-    });
-
     previewPicture.addEventListener('click', () => {
       openBigPicture();
     });
 
-    previewPicture.addEventListener('keydown', (evt) => {
-      if (isEnterKey(evt)) {
-        openBigPicture();
-      }
-    });
   });
 });

@@ -8,6 +8,15 @@ const getRandomNumber = (a, b) => {
 
 //Получение случайного числа из массива
 const getRandomArrayNumber = (elements) => elements[getRandomNumber(0, elements.length - 1)];
+//
+const createIdGenerator = () => {
+  let lastGeneratedId = 0;
+
+  return function () {
+    lastGeneratedId += 1;
+    return lastGeneratedId;
+  };
+};
 
 //Функция для уникального числа
 const getUniqueNumber = (min, max) => {
@@ -28,4 +37,4 @@ const getUniqueNumber = (min, max) => {
 //Функция проверки нажатой клавиши ESC
 const isEscapeKey = (evt) => evt.key === 'Escape';
 
-export {getRandomArrayNumber, getUniqueNumber, isEscapeKey};
+export {getRandomArrayNumber, getRandomNumber, getUniqueNumber, createIdGenerator,isEscapeKey};

@@ -1,11 +1,25 @@
-import {getRandomArrayNumber} from './util.js';
+import {getRandomArrayNumber, getRandomNumber, createIdGenerator} from './util.js';
+
+const LIKE_MIN_COUNT = 15;
+const LIKE_MAX_COUNT = 200;
+const AVATAR_COUNT = 6;
+const COMMENT_COUNT = 20;
+
+const COMMENTS = [
+  'Всё отлично!',
+  'В целом всё неплохо. Но не всё.',
+  'Когда вы делаете фотографию, хорошо бы убирать палец из кадра. В конце концов это просто непрофессионально.',
+  'Моя бабушка случайно чихнула с фотоаппаратом в руках и у неё получилась фотография лучше.',
+  'Я поскользнулся на банановой кожуре и уронил фотоаппарат на кота и у меня получилась фотография лучше.',
+  'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!'
+];
 
 const IDS = [];
 for(let i = 1;i <= 25;i++){
   IDS.push(i);
 }
 
-const URLS = [
+/*const URLS = [
   'photos/1.jpg',
   'photos/2.jpg',
   'photos/3.jpg',
@@ -16,7 +30,7 @@ const URLS = [
   'photos/8.jpg',
   'photos/9.jpg',
   'photos/10.jpg',
-];
+];*/
 
 const DESCRIPTIONS = [
   'Выходные на озере',
@@ -29,34 +43,27 @@ const DESCRIPTIONS = [
   'Немного наших будней вам в ленту',
   'Красиво жить не запретишь'];
 
-const LIKES = [];
-for(let j = 15;j <= 200;j++){
-  LIKES.push(j);
-}
+const NAMES = ['Владимир', 'Мария', 'Алексей', 'Елена', 'София', 'Матвей'];
 
-const COMMENTS = [
-  {
-    id: 1325,
-    avatar: 'img/avatar-1.svg',
-    message: 'В целом всё неплохо. Но не всё.',
-    name: 'Леша',
-  },
-  {
-    id: 1326,
-    avatar: 'img/avatar-2.svg',
-    message: 'Я поскользнулся на банановой кожуре и уронил фотоаппарат на кота и у меня получилась фотография лучше.',
-    name: 'Женя',
-  }
-];
+const generateCommentId = createIdGenerator();
+const generatePhotoId = createIdGenerator();
+const generateUrlId = createIdGenerator();
+
+const createComment = () => ({
+  id: generateCommentId(),
+  avatar: `img/avatar-${getRandomNumber(1, AVATAR_COUNT)}.svg`,
+  message: getRandomArrayNumber(COMMENTS),
+  name: getRandomArrayNumber(NAMES)
+});
 
 const FILLTHEARRAY_COUNT = 25;
 
 const createElement = () => ({
-  id: getRandomArrayNumber(IDS),
-  url: getRandomArrayNumber(URLS),
+  id: generatePhotoId(IDS),
+  url: `photos/${generateUrlId()}.jpg`,
   description: getRandomArrayNumber(DESCRIPTIONS),
-  likes: getRandomArrayNumber(LIKES),
-  comments: COMMENTS,
+  likes: getRandomNumber(LIKE_MIN_COUNT, LIKE_MAX_COUNT),
+  comments: Array.from({length: getRandomNumber(1, COMMENT_COUNT)}, createComment)
 });
 
 const fillTheArray = Array.from({length: FILLTHEARRAY_COUNT}, createElement);
