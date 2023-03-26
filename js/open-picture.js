@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
       body.classList.add('modal-open');
       document.addEventListener('keydown', onDocumentEscKeydown);
     }
-    //Комментарии
+    //Отображение комментариев
     const getCommentItem = (element) => {
       socialComments.textContent = '';
       const socialComment = document.createElement('li');
@@ -110,8 +110,8 @@ document.addEventListener('DOMContentLoaded', () => {
     function closeUserModal () {
       bigPicture.classList.add('hidden');
       //8.15 убираем класс у счётчика комментариев и загрузки новых комментариев
-      //socialCommentsCount.classList.remove('hidden');
-      //commentsLoader.classList.remove('hidden');
+      socialCommentsCount.classList.remove('hidden');
+      commentsLoader.classList.remove('hidden');
 
       body.classList.remove('modal-open');
       document.removeEventListener('keydown', onDocumentEscKeydown);
