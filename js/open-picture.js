@@ -2,17 +2,15 @@
 /* eslint-disable eqeqeq */
 import {isEscapeKey} from './util.js';
 import {fillTheArray} from './data.js';
+import {SIZE} from './data.js';
+import {MIN_VALUE} from './data.js';
+import {STEP} from './data.js';
 
 
 // Добавление возможности просмотра фотографий в полноэкранном режиме
 
 //Ждем загрузки страницы и только после этого начинаем искать нужный нам элемент и вешать все обработчики
 document.addEventListener('DOMContentLoaded', () => {
-
-  const SIZE = 35;
-  const MIN_VALUE = 0;
-  const STEP = 5;
-
 
   const bigPicture = document.querySelector('.big-picture');
   const bigPictureImg = document.querySelector('.big-picture__img img');

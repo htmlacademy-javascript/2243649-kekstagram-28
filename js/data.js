@@ -1,5 +1,9 @@
 import {getRandomArrayNumber, getRandomNumber, createIdGenerator} from './util.js';
 
+const SIZE = 35;
+const MIN_VALUE = 0;
+const STEP = 5;
+
 const LIKE_MIN_COUNT = 15;
 const LIKE_MAX_COUNT = 200;
 const AVATAR_COUNT = 6;
@@ -56,3 +60,6 @@ const createElement = () => ({
 const fillTheArray = Array.from({length: FILLTHEARRAY_COUNT}, createElement);
 
 export {fillTheArray};
+export {SIZE};
+export {MIN_VALUE};
+export {STEP};
