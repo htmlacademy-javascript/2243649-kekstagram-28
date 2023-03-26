@@ -1,9 +1,5 @@
-/* eslint-disable no-shadow */
-/* eslint-disable no-unused-vars */
-/* eslint-disable no-use-before-define */
+/* eslint-disable no-undef */
 /* eslint-disable eqeqeq */
-/* eslint-disable no-multiple-empty-lines */
-// eslint-disable-next-line no-unused-vars
 import {isEscapeKey} from './util.js';
 import {fillTheArray} from './data.js';
 
@@ -40,6 +36,64 @@ document.addEventListener('DOMContentLoaded', () => {
   userOpenPictures.forEach((previewPicture) => {
     function openBigPicture () {
 
+      //Отображение комментариев
+      const getCommentItem = (element) => {
+        socialComments.textContent = '';
+        const socialComment = document.createElement('li');
+        socialComment.classList.add('social__comment');
+        const socialCommentImg = document.createElement('img');
+        socialCommentImg.classList.add('social__picture');
+        socialCommentImg.src = element.avatar;
+        socialComment.alt = element.name;
+        socialComment.width = SIZE;
+        socialComment.height = SIZE;
+        socialComment.appendChild(socialCommentImg);
+        const socialCommentText = document.createElement('p');
+        socialCommentText.classList.add('social__text');
+        socialCommentText.textContent = element.message;
+        socialComment.appendChild(socialCommentText);
+        socialCommentsCopy = socialComment;
+      };
+
+
+      const getSocialComment = (elements) => {
+        commentsLoader.classList.remove('hidden');
+        const commentFragment = document.createDocumentFragment();
+        const secondCommentFragment = document.createDocumentFragment();
+        let commentsToShowCount = MIN_VALUE;
+        let quantityComment = MIN_VALUE;
+        const onLoadCommentsClick = () => {
+          socialComments.textContent = '';
+          commentsToShowCount += STEP;
+          quantityComment += STEP;
+          const commentsToShow = elements.slice(0, commentsToShowCount);
+          commentsToShow.forEach((element) => {
+            getCommentItem(element);
+            secondCommentFragment.appendChild(socialCommentsCopy);
+            if (element === elements[elements.length - 1]) {
+              commentsLoader.classList.add('hidden');
+              socialCommentsCount.innerHTML = `${elements.length} из <span class='comments-count'>${elements.length}</span> комментариев`;
+            } else {
+              commentsLoader.classList.remove('hidden');
+              socialCommentsCount.innerHTML = `${quantityComment} из <span class='comments-count'>${elements.length}</span> комментариев`;
+            }
+            return secondCommentFragment;
+          });
+          socialComments.appendChild(secondCommentFragment);
+        };
+        onLoadCommentsClick();
+        commentsLoader.addEventListener('click', onLoadCommentsClick);
+        socialComments.appendChild(commentFragment);
+      };
+
+      //Закрытие на клавишу ESC
+      const onDocumentEscKeydown = (evt) => {
+        if (isEscapeKey(evt)) {
+          evt.preventDefault();
+          closeUserModal();
+        }
+      };
+
       const kekstagramPost = fillTheArray.find((element) => element.id == previewPicture.id);
       bigPictureImg.src = kekstagramPost.url;
       bigPictureLikes.textContent = kekstagramPost.likes;
@@ -50,62 +104,6 @@ document.addEventListener('DOMContentLoaded', () => {
       body.classList.add('modal-open');
       document.addEventListener('keydown', onDocumentEscKeydown);
     }
-    //Отображение комментариев
-    const getCommentItem = (element) => {
-      socialComments.textContent = '';
-      const socialComment = document.createElement('li');
-      socialComment.classList.add('social__comment');
-      const socialCommentImg = document.createElement('img');
-      socialCommentImg.classList.add('social__picture');
-      socialCommentImg.src = element.avatar;
-      socialComment.alt = element.name;
-      socialComment.width = SIZE;
-      socialComment.height = SIZE;
-      socialComment.appendChild(socialCommentImg);
-      const socialCommentText = document.createElement('p');
-      socialCommentText.classList.add('social__text');
-      socialCommentText.textContent = element.message;
-      socialComment.appendChild(socialCommentText);
-      socialCommentsCopy = socialComment;
-    };
-
-    const getSocialComment = (elements) => {
-      commentsLoader.classList.remove('hidden');
-      const commentFragment = document.createDocumentFragment();
-      const secondCommentFragment = document.createDocumentFragment();
-      let commentsToShowCount = MIN_VALUE;
-      let quantityComment = MIN_VALUE;
-      const onLoadCommentsClick = () => {
-        socialComments.textContent = '';
-        commentsToShowCount += STEP;
-        quantityComment += STEP;
-        const commentsToShow = elements.slice(0, commentsToShowCount);
-        commentsToShow.forEach((element) => {
-          getCommentItem(element);
-          secondCommentFragment.appendChild(socialCommentsCopy);
-          if (element === elements[elements.length - 1]) {
-            commentsLoader.classList.add('hidden');
-            socialCommentsCount.innerHTML = `${elements.length} из <span class='comments-count'>${elements.length}</span> комментариев`;
-          } else {
-            commentsLoader.classList.remove('hidden');
-            socialCommentsCount.innerHTML = `${quantityComment} из <span class='comments-count'>${elements.length}</span> комментариев`;
-          }
-          return secondCommentFragment;
-        });
-        socialComments.appendChild(secondCommentFragment);
-      };
-      onLoadCommentsClick();
-      commentsLoader.addEventListener('click', onLoadCommentsClick);
-      socialComments.appendChild(commentFragment);
-    };
-
-    //Закрытие на клавишу ESC
-    const onDocumentEscKeydown = (evt) => {
-      if (isEscapeKey(evt)) {
-        evt.preventDefault();
-        closeUserModal();
-      }
-    };
 
     function closeUserModal () {
       bigPicture.classList.add('hidden');
