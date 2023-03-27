@@ -1,5 +1,9 @@
 import {getRandomArrayNumber, getRandomNumber, createIdGenerator} from './util.js';
 
+const SIZE = 35;
+const MIN_VALUE = 0;
+const STEP = 5;
+
 const LIKE_MIN_COUNT = 15;
 const LIKE_MAX_COUNT = 200;
 const AVATAR_COUNT = 6;
@@ -19,18 +23,7 @@ for(let i = 1;i <= 25;i++){
   IDS.push(i);
 }
 
-/*const URLS = [
-  'photos/1.jpg',
-  'photos/2.jpg',
-  'photos/3.jpg',
-  'photos/4.jpg',
-  'photos/5.jpg',
-  'photos/6.jpg',
-  'photos/7.jpg',
-  'photos/8.jpg',
-  'photos/9.jpg',
-  'photos/10.jpg',
-];*/
+const FILLTHEARRAY_COUNT = 25;
 
 const DESCRIPTIONS = [
   'Выходные на озере',
@@ -56,8 +49,6 @@ const createComment = () => ({
   name: getRandomArrayNumber(NAMES)
 });
 
-const FILLTHEARRAY_COUNT = 25;
-
 const createElement = () => ({
   id: generatePhotoId(IDS),
   url: `photos/${generateUrlId()}.jpg`,
@@ -68,8 +59,7 @@ const createElement = () => ({
 
 const fillTheArray = Array.from({length: FILLTHEARRAY_COUNT}, createElement);
 
-// eslint-disable-next-line no-console
-console.log(fillTheArray);
-// eslint-disable-next-line no-console
-console.log('data.js');
 export {fillTheArray};
+export {SIZE};
+export {MIN_VALUE};
+export {STEP};
