@@ -57,6 +57,7 @@ const createElement = () => ({
   comments: Array.from({length: getRandomNumber(1, COMMENT_COUNT)}, createComment)
 });
 
+//Функция для создания массивов с данными
 const fillTheArray = Array.from({length: FILLTHEARRAY_COUNT}, createElement);
 
 export {fillTheArray};

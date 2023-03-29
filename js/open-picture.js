@@ -91,7 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
           closeUserModal();
         }
       };
-
+      //Поиск в массиве совпадения айди
       const kekstagramPost = fillTheArray.find((element) => element.id == previewPicture.id);
       bigPictureImg.src = kekstagramPost.url;
       bigPictureLikes.textContent = kekstagramPost.likes;
@@ -102,20 +102,19 @@ document.addEventListener('DOMContentLoaded', () => {
       body.classList.add('modal-open');
       document.addEventListener('keydown', onDocumentEscKeydown);
     }
-
+    //Закрытие большой фотографии
     function closeUserModal () {
       bigPicture.classList.add('hidden');
       //8.15 убираем класс у счётчика комментариев и загрузки новых комментариев
       socialCommentsCount.classList.remove('hidden');
       commentsLoader.classList.remove('hidden');
 
+      closeBigPicture.addEventListener('click', () => {
+        closeUserModal();
+      });
       body.classList.remove('modal-open');
       document.removeEventListener('keydown', onDocumentEscKeydown);
     }
-
-    closeBigPicture.addEventListener('click', () => {
-      closeUserModal();
-    });
 
     previewPicture.addEventListener('click', () => {
       openBigPicture();
@@ -123,3 +122,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
   });
 });
+
