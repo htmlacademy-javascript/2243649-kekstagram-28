@@ -2,9 +2,7 @@
 /* eslint-disable eqeqeq */
 import {isEscapeKey} from './util.js';
 import {fillTheArray} from './data.js';
-import {SIZE} from './data.js';
-import {MIN_VALUE} from './data.js';
-import {STEP} from './data.js';
+import {SIZE, MIN_VALUE, STEP} from './data.js';
 
 
 // Добавление возможности просмотра фотографий в полноэкранном режиме

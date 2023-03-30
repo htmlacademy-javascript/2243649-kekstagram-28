@@ -39,10 +39,10 @@ const getUniqueNumber = (min, max) => {
 const isEscapeKey = (evt) => evt.key === 'Escape';
 
 //Отмена обработчика Esc при фокусе
-const stoppedPropagation = (evt) => {
+/*const stoppedPropagation = (evt) => {
   if (evt.key === 'Escape') {
     evt.stopPropagation();
   }
-};
+};*/
 
-export {getRandomArrayNumber, getRandomNumber, getUniqueNumber, createIdGenerator,isEscapeKey, stoppedPropagation};
+export {getRandomArrayNumber, getRandomNumber, getUniqueNumber, createIdGenerator,isEscapeKey};

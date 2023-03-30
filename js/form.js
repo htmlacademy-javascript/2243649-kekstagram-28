@@ -1,19 +1,16 @@
-
-//import scale.js
-//import effects.js
-
-const HASHTAG_MAX_COUNT = 5;
-const VALID_SYMBOLS = /^#[a-zа-яё0-9]{1,19}$/i;
-const TAG_ERROR_TEXT = 'Введите не более 5 хештегов. Каждый должен начинаться с символа # и может содержать буквы или числа.';
-//const COMMENT_MAX_LENGTH = 140;
-//const COMMENT_ERROR_TEXT = `Максимальная длина ${MESSAGE_LENGTH} символов`;
+import {HASHTAG_MAX_COUNT, VALID_SYMBOLS, TAG_ERROR_TEXT} from './data.js';
+//import {stoppedPropagation} from './util.js';
+//import {resetScale} from './img-scale.js';
+//import {resetEffects} from './filters.js';
 
 const form = document.querySelector('.img-upload__form');
 const overlay = document.querySelector('.img-upload__overlay');
 const textHashtags = document.querySelector('.text__hashtags');
 const textComment = document.querySelector('.text__description');
 const imgUploadFile = document.querySelector('#upload-file');
-//const closeImgButton = document.querySelector('#upload--cancel');
+const closeImgButton = document.querySelector('#upload-cancel');
+//const errorMessage = document.querySelector('#error').content.querySelector('.error');
+//const errorButtonElement = errorMessage.querySelector('.error__button');
 const body = document.querySelector('body');
 
 
@@ -33,6 +30,7 @@ const closeImgEditor = () => {
   form.reset();
   //resetScale();
   //resetEffects();
+  pristine.reset();
   overlay.classList.add('hidden');
   body.classList.remove('modal-open');
   document.removeEventListener('keydown', onDocumentKeydown);
@@ -40,7 +38,7 @@ const closeImgEditor = () => {
 
 const isTextFieldFocused = () =>
   document.activeElement === textHashtags ||
-document.activeElement === textComment;
+  document.activeElement === textComment;
 
 function onDocumentKeydown (evt) {
   //if (isEscapeKey(evt) && !isTextFieldFocused) {
@@ -50,10 +48,10 @@ function onDocumentKeydown (evt) {
   }
 }
 
-/*const onCancelButtonClick = () => {
+const onCancelButtonClick = () => {
   closeImgEditor();
 };
-*/
+
 const onFileUnputChange = () => {
   openImgEditor();
 };
@@ -61,8 +59,6 @@ const onFileUnputChange = () => {
 const isValidTag = (tag) => VALID_SYMBOLS.test(tag);
 
 const checkHashtags = (tags) => tags.length <= HASHTAG_MAX_COUNT;
-
-//const isValidHashtagCount = (tags) => tags.length <= HASHTAG_MAX_COUNT;
 
 //Проверка уникальности хэштегов
 const hasUniqueTags = (tags) => {
@@ -94,6 +90,6 @@ const onFormSubmit = (evt) => {
 //textHashtags.addEventListener('keydown', stoppedPropagation);
 //textComment.addEventListener('keydown', stoppedPropagation);
 imgUploadFile.addEventListener('change',onFileUnputChange);
-//closeImgButton.addEventListener('click', onCancelButtonClick);
+closeImgButton.addEventListener('click', onCancelButtonClick);
 form.addEventListener('submit', onFormSubmit);
 

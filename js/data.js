@@ -9,6 +9,16 @@ const LIKE_MAX_COUNT = 200;
 const AVATAR_COUNT = 6;
 const COMMENT_COUNT = 20;
 
+const HASHTAG_MAX_COUNT = 5;
+const VALID_SYMBOLS = /^#[a-zа-яё0-9]{1,19}$/i;
+const TAG_ERROR_TEXT = 'Введите не более 5 хештегов. Каждый должен начинаться с символа # и может содержать буквы или числа.';
+
+const SCALE_STEP = 25;
+const MAX_SCALE = 100;
+const MIN_SCALE = 100;
+const DEFAULT_SCALE = 100;
+
+
 const COMMENTS = [
   'Всё отлично!',
   'В целом всё неплохо. Но не всё.',
@@ -61,6 +71,6 @@ const createElement = () => ({
 const fillTheArray = Array.from({length: FILLTHEARRAY_COUNT}, createElement);
 
 export {fillTheArray};
-export {SIZE};
-export {MIN_VALUE};
-export {STEP};
+export {SIZE, MIN_VALUE, STEP};
+export {HASHTAG_MAX_COUNT, VALID_SYMBOLS, TAG_ERROR_TEXT};
+export {SCALE_STEP, MAX_SCALE, MIN_SCALE, DEFAULT_SCALE};
