@@ -38,4 +38,11 @@ const getUniqueNumber = (min, max) => {
 //Функция проверки нажатой клавиши ESC
 const isEscapeKey = (evt) => evt.key === 'Escape';
 
+//Отмена обработчика Esc при фокусе
+/*const stoppedPropagation = (evt) => {
+  if (evt.key === 'Escape') {
+    evt.stopPropagation();
+  }
+};*/
+
 export {getRandomArrayNumber, getRandomNumber, getUniqueNumber, createIdGenerator,isEscapeKey};
