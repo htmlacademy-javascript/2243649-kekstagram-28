@@ -1,4 +1,4 @@
-/*import {FILTERS} from './filters-options.js';
+import {FILTERS} from './filters-options.js';
 
 const defaultEffect = FILTERS[0];
 let chosenEffect = defaultEffect;
@@ -73,4 +73,4 @@ const onSliderUpdate = () => {
 effectsListElements.addEventListener('change', onEffectsChange);
 effectSliderElement.noUiSlider.on('update', onSliderUpdate);
 
-export {resetEffects};*/
+export {resetEffects};

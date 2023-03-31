@@ -6,19 +6,8 @@ const scaleControlValue = document.querySelector('.scale__control--value');
 const imgUploadPreview = document.querySelector('.img-upload__preview img');
 
 const getimgScale = (value) => {
-  imgUploadPreview.style.transform = 'scale(&{value / 100})';
+  imgUploadPreview.style.transform = `scale(${value / 100})`;
   scaleControlValue.value = `${value}%`;
-};
-
-//Увеличение масштаба
-const addButtonClick = () => {
-  const currentValue = parseInt(scaleControlValue.value, 10);
-  let newValue = currentValue + SCALE_STEP;
-
-  if (newValue > MAX_SCALE) {
-    newValue = MAX_SCALE;
-  }
-  getimgScale(newValue);
 };
 
 //Уменьшение масштаба
@@ -32,11 +21,21 @@ const deleteButtonClick = () => {
   getimgScale(newValue);
 };
 
+//Увеличение масштаба
+const addButtonClick = () => {
+  const currentValue = parseInt(scaleControlValue.value, 10);
+  let newValue = currentValue + SCALE_STEP;
+
+  if (newValue > MAX_SCALE) {
+    newValue = MAX_SCALE;
+  }
+  getimgScale(newValue);
+};
 
 const resetScale = () => getimgScale(DEFAULT_SCALE);
 //{ scaleControlValue.value = getimgScale(DEFAULT_SCALE)};
 
-scaleControlBigger.addEventListener('click', addButtonClick);
 scaleControlSmaller.addEventListener('click', deleteButtonClick);
+scaleControlBigger.addEventListener('click', addButtonClick);
 
 export {resetScale};

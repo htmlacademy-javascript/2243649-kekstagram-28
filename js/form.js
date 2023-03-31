@@ -1,7 +1,7 @@
 import {HASHTAG_MAX_COUNT, VALID_SYMBOLS, TAG_ERROR_TEXT} from './data.js';
 //import {stoppedPropagation} from './util.js';
-//import {resetScale} from './img-scale.js';
-//import {resetEffects} from './filters.js';
+import {resetScale} from './img-scale.js';
+import {resetEffects} from './filters.js';
 
 const form = document.querySelector('.img-upload__form');
 const overlay = document.querySelector('.img-upload__overlay');
@@ -28,8 +28,8 @@ const openImgEditor = () => {
 
 const closeImgEditor = () => {
   form.reset();
-  //resetScale();
-  //resetEffects();
+  resetScale();
+  resetEffects();
   pristine.reset();
   overlay.classList.add('hidden');
   body.classList.remove('modal-open');
@@ -41,7 +41,6 @@ const isTextFieldFocused = () =>
   document.activeElement === textComment;
 
 function onDocumentKeydown (evt) {
-  //if (isEscapeKey(evt) && !isTextFieldFocused) {
   if (evt.key === 'Escape' && !isTextFieldFocused()) {
     evt.preventDefault();
     closeImgEditor();
