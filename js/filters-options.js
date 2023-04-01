@@ -1,4 +1,4 @@
-/*const FILTERS = [
+const FILTERS = [
   {
     name: 'none',
     style: 'none',
@@ -50,4 +50,4 @@
   }
 ];
 
-export {FILTERS};*/
+export {FILTERS};
