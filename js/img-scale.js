@@ -33,7 +33,6 @@ const addButtonClick = () => {
 };
 
 const resetScale = () => getimgScale(DEFAULT_SCALE);
-//{ scaleControlValue.value = getimgScale(DEFAULT_SCALE)};
 
 scaleControlSmaller.addEventListener('click', deleteButtonClick);
 scaleControlBigger.addEventListener('click', addButtonClick);

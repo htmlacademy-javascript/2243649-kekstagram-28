@@ -82,13 +82,6 @@ document.addEventListener('DOMContentLoaded', () => {
         socialComments.appendChild(commentFragment);
       };
 
-      //Закрытие на клавишу ESC
-      const onDocumentEscKeydown = (evt) => {
-        if (isEscapeKey(evt)) {
-          evt.preventDefault();
-          closeUserModal();
-        }
-      };
       //Поиск в массиве совпадения айди
       const kekstagramPost = fillTheArray.find((element) => element.id == previewPicture.id);
       bigPictureImg.src = kekstagramPost.url;
@@ -112,7 +105,15 @@ document.addEventListener('DOMContentLoaded', () => {
       });
       body.classList.remove('modal-open');
       document.removeEventListener('keydown', onDocumentEscKeydown);
-    }
+    };
+
+    //Закрытие на клавишу ESC
+    const onDocumentEscKeydown = (evt) => {
+      if (isEscapeKey(evt)) {
+        evt.preventDefault();
+        closeUserModal();
+      }
+    };
 
     previewPicture.addEventListener('click', () => {
       openBigPicture();
