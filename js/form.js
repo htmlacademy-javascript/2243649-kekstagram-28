@@ -33,7 +33,7 @@ const pristine = new Pristine(form, {
 const openImgEditor = () => {
   overlay.classList.remove('hidden');
   body.classList.add('modal-open');
-  document.addEventListener('keydown', onDocumentKeydown);
+  document.addEventListener('keydown', onDocumentEscKeydown);
 };
 
 const closeImgEditor = () => {
@@ -43,14 +43,14 @@ const closeImgEditor = () => {
   pristine.reset();
   overlay.classList.add('hidden');
   body.classList.remove('modal-open');
-  document.removeEventListener('keydown', onDocumentKeydown);
+  document.removeEventListener('keydown', onDocumentEscKeydown);
 };
 
 const isTextFieldFocused = () =>
   document.activeElement === textHashtags ||
   document.activeElement === textComment;
 
-function onDocumentKeydown (evt) {
+function onDocumentEscKeydown (evt) {
   if (evt.key === 'Escape' && !isTextFieldFocused()) {
     evt.preventDefault();
     closeImgEditor();
@@ -179,4 +179,4 @@ imgUploadFile.addEventListener('change',onFileUnputChange);
 closeImgButton.addEventListener('click', onCancelButtonClick);
 form.addEventListener('submit', onFormSubmit);
 
-export {onFormSubmit, closeImgEditor, onDocumentKeydown, showFullSuccessMessage ,showFullErrorMessage};
+export {onFormSubmit, closeImgEditor, onDocumentEscKeydown, showFullSuccessMessage ,showFullErrorMessage};
