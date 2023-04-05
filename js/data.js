@@ -1,5 +1,7 @@
 import {getRandomArrayNumber, getRandomNumber, createIdGenerator} from './util.js';
 
+const ALERT_SHOW_TIME = 5000;
+
 const SIZE = 35;
 const MIN_VALUE = 0;
 const STEP = 5;
@@ -74,3 +76,4 @@ export {fillTheArray};
 export {SIZE, MIN_VALUE, STEP};
 export {HASHTAG_MAX_COUNT, VALID_SYMBOLS, TAG_ERROR_TEXT};
 export {SCALE_STEP, MAX_SCALE, MIN_SCALE, DEFAULT_SCALE};
+export {ALERT_SHOW_TIME};
