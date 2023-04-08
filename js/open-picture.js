@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const bigPictureLikes = document.querySelector('.likes-count');
 
   const closeBigPicture = document.querySelector('.big-picture__cancel');
-  //
+
   const bigPictureComments = document.querySelector('.comments-count');
   const socialComments = bigPicture.querySelector('.social__comments');
 
