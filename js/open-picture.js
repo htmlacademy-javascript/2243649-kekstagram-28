@@ -1,14 +1,15 @@
 /* eslint-disable no-undef */
 /* eslint-disable eqeqeq */
 import {isEscapeKey} from './util.js';
-import {fillTheArray} from './data.js';
+import { fillTheArray } from './data.js';
 import {SIZE, MIN_VALUE, STEP} from './data.js';
 
 
 // Добавление возможности просмотра фотографий в полноэкранном режиме
 
 //Ждем загрузки страницы и только после этого начинаем искать нужный нам элемент и вешать все обработчики
-document.addEventListener('DOMContentLoaded', () => {
+
+const openBP = (renderData) => {
 
   const bigPicture = document.querySelector('.big-picture');
   const bigPictureImg = document.querySelector('.big-picture__img img');
@@ -28,6 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   //Массив всех превьюшек
   const userOpenPictures = document.querySelectorAll('.picture__img');
+
 
   userOpenPictures.forEach((previewPicture) => {
     function openBigPicture () {
@@ -50,7 +52,6 @@ document.addEventListener('DOMContentLoaded', () => {
         socialComment.appendChild(socialCommentText);
         socialCommentsCopy = socialComment;
       };
-
 
       const getSocialComment = (elements) => {
         commentsLoader.classList.remove('hidden');
@@ -88,9 +89,13 @@ document.addEventListener('DOMContentLoaded', () => {
           evt.preventDefault();
           closeUserModal();
         }
-      };
+      }; //1. завести переменную
+      //2. скопировать в переменную из п 1 ссылку на функцию из строки 87
+      //3. функцию 117 передать в переменную из шага 1
+      //const onCancelButtonClick = onDocumentEscKeydown;
+      //onCancelButtonClick();
       //Поиск в массиве совпадения айди
-      const kekstagramPost = fillTheArray.find((element) => element.id == previewPicture.id);
+      const kekstagramPost = renderData.find((element) => element.id == previewPicture.id);
       bigPictureImg.src = kekstagramPost.url;
       bigPictureLikes.textContent = kekstagramPost.likes;
       bigPictureComments.textContent = kekstagramPost.comments.length;
@@ -111,7 +116,7 @@ document.addEventListener('DOMContentLoaded', () => {
         closeUserModal();
       });
       body.classList.remove('modal-open');
-      document.removeEventListener('keydown', onDocumentEscKeydown);
+      document.removeEventListener('keydown', onCancelButtonClick);
     }
 
     previewPicture.addEventListener('click', () => {
@@ -119,5 +124,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
   });
+};
+document.addEventListener('DOMContentLoaded', () => {
+  openBP(fillTheArray);
 });
-
+export {openBP};

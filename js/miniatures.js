@@ -16,6 +16,7 @@ const createMiniatures = (photos) => {
   return picContainer.appendChild(pictureFragment);
 };
 
+
 /*const renderMiniatures = (pictures, container) => {
   container.querySelectorAll('.picture').forEach((element) => element.remove());
   const fragment = document.createDocumentFragment();
@@ -27,5 +28,3 @@ const createMiniatures = (photos) => {
 };
 */
 export {createMiniatures};
-
-
