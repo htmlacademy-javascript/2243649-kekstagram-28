@@ -9,7 +9,7 @@ import {SIZE, MIN_VALUE, STEP} from './data.js';
 
 //Ждем загрузки страницы и только после этого начинаем искать нужный нам элемент и вешать все обработчики
 
-const openBP = (renderData) => {
+const setOpenFormListener = (renderData) => {
 
   const bigPicture = document.querySelector('.big-picture');
   const bigPictureImg = document.querySelector('.big-picture__img img');
@@ -33,20 +33,6 @@ const openBP = (renderData) => {
 
   userOpenPictures.forEach((previewPicture) => {
     function openBigPicture () {
-
-      //Закрытие большой фотографии
-      function closeUserModal () {
-        bigPicture.classList.add('hidden');
-        body.classList.remove('modal-open');
-        document.removeEventListener('keydown', onDocumentKeydown);
-      }
-      //8.15 убираем класс у счётчика комментариев и загрузки новых комментариев
-      socialCommentsCount.classList.remove('hidden');
-      commentsLoader.classList.remove('hidden');
-
-      closeBigPicture.addEventListener('click', () => {
-        closeUserModal();
-      });
 
       //Отображение комментариев
       const getCommentItem = (element) => {
@@ -97,6 +83,9 @@ const openBP = (renderData) => {
         socialComments.appendChild(commentFragment);
       };
 
+      /*const onClosePictureClick = onDocumentEscKeydown;
+      onClosePictureClick();
+*/
       //Закрытие на клавишу ESC
       const onDocumentEscKeydown = (evt) => {
         if (isEscapeKey(evt)) {
@@ -104,8 +93,6 @@ const openBP = (renderData) => {
           closeUserModal();
         }
       };
-      //onDocumentKeydown = onDocumentEscKeydown;
-      //onDocumentKeydown();
 
       //Поиск в массиве совпадения айди
       const kekstagramPost = renderData.find((element) => element.id == previewPicture.id);
@@ -119,6 +106,19 @@ const openBP = (renderData) => {
       document.addEventListener('keydown', onDocumentEscKeydown);
     }
 
+    //Закрытие большой фотографии
+    function closeUserModal () {
+      bigPicture.classList.add('hidden');
+      body.classList.remove('modal-open');
+      document.removeEventListener('keydown', onDocumentKeydown);
+    }
+    //8.15 убираем класс у счётчика комментариев и загрузки новых комментариев
+    socialCommentsCount.classList.remove('hidden');
+    commentsLoader.classList.remove('hidden');
+
+    closeBigPicture.addEventListener('click', () => {
+      closeUserModal();
+    });
     previewPicture.addEventListener('click', () => {
       openBigPicture();
     });
@@ -126,6 +126,6 @@ const openBP = (renderData) => {
   });
 };
 document.addEventListener('DOMContentLoaded', () => {
-  openBP(fillTheArray);
+  setOpenFormListener(fillTheArray);
 });
-export {openBP};
+export {setOpenFormListener};
