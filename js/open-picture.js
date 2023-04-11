@@ -1,21 +1,22 @@
 /* eslint-disable no-undef */
 /* eslint-disable eqeqeq */
 import {isEscapeKey} from './util.js';
-import {fillTheArray} from './data.js';
+import { fillTheArray } from './data.js';
 import {SIZE, MIN_VALUE, STEP} from './data.js';
 
 
 // Добавление возможности просмотра фотографий в полноэкранном режиме
 
 //Ждем загрузки страницы и только после этого начинаем искать нужный нам элемент и вешать все обработчики
-document.addEventListener('DOMContentLoaded', () => {
+
+const openBP = (renderData) => {
 
   const bigPicture = document.querySelector('.big-picture');
   const bigPictureImg = document.querySelector('.big-picture__img img');
   const bigPictureLikes = document.querySelector('.likes-count');
 
   const closeBigPicture = document.querySelector('.big-picture__cancel');
-  //
+
   const bigPictureComments = document.querySelector('.comments-count');
   const socialComments = bigPicture.querySelector('.social__comments');
 
@@ -29,8 +30,23 @@ document.addEventListener('DOMContentLoaded', () => {
   //Массив всех превьюшек
   const userOpenPictures = document.querySelectorAll('.picture__img');
 
+
   userOpenPictures.forEach((previewPicture) => {
     function openBigPicture () {
+
+      //Закрытие большой фотографии
+      function closeUserModal () {
+        bigPicture.classList.add('hidden');
+        body.classList.remove('modal-open');
+        document.removeEventListener('keydown', onDocumentKeydown);
+      }
+      //8.15 убираем класс у счётчика комментариев и загрузки новых комментариев
+      socialCommentsCount.classList.remove('hidden');
+      commentsLoader.classList.remove('hidden');
+
+      closeBigPicture.addEventListener('click', () => {
+        closeUserModal();
+      });
 
       //Отображение комментариев
       const getCommentItem = (element) => {
@@ -50,7 +66,6 @@ document.addEventListener('DOMContentLoaded', () => {
         socialComment.appendChild(socialCommentText);
         socialCommentsCopy = socialComment;
       };
-
 
       const getSocialComment = (elements) => {
         commentsLoader.classList.remove('hidden');
@@ -89,8 +104,11 @@ document.addEventListener('DOMContentLoaded', () => {
           closeUserModal();
         }
       };
+      //onDocumentKeydown = onDocumentEscKeydown;
+      //onDocumentKeydown();
+
       //Поиск в массиве совпадения айди
-      const kekstagramPost = fillTheArray.find((element) => element.id == previewPicture.id);
+      const kekstagramPost = renderData.find((element) => element.id == previewPicture.id);
       bigPictureImg.src = kekstagramPost.url;
       bigPictureLikes.textContent = kekstagramPost.likes;
       bigPictureComments.textContent = kekstagramPost.comments.length;
@@ -100,24 +118,14 @@ document.addEventListener('DOMContentLoaded', () => {
       body.classList.add('modal-open');
       document.addEventListener('keydown', onDocumentEscKeydown);
     }
-    //Закрытие большой фотографии
-    function closeUserModal () {
-      bigPicture.classList.add('hidden');
-      //8.15 убираем класс у счётчика комментариев и загрузки новых комментариев
-      socialCommentsCount.classList.remove('hidden');
-      commentsLoader.classList.remove('hidden');
-
-      closeBigPicture.addEventListener('click', () => {
-        closeUserModal();
-      });
-      body.classList.remove('modal-open');
-      document.removeEventListener('keydown', onDocumentEscKeydown);
-    }
 
     previewPicture.addEventListener('click', () => {
       openBigPicture();
     });
 
   });
+};
+document.addEventListener('DOMContentLoaded', () => {
+  openBP(fillTheArray);
 });
-
+export {openBP};

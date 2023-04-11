@@ -1,5 +1,6 @@
 import {ALERT_SHOW_TIME} from './data.js';
 
+
 // Функция получения случайного числа
 const getRandomNumber = (a, b) => {
   const lower = Math.ceil(Math.min(a, b));
@@ -60,4 +61,14 @@ const showAlert = (message) => {
   }, ALERT_SHOW_TIME);
 };
 
-export {getRandomArrayNumber, getRandomNumber, getUniqueNumber, createIdGenerator,isEscapeKey, showAlert};
+//Функция для устранения дребезга
+const debounce = (callback, timeoutDelay = 500) => {
+  let timeoutId;
+  return (...rest) => {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => callback.apply(this, rest), timeoutDelay);
+  };
+};
+
+
+export {getRandomArrayNumber, getRandomNumber, getUniqueNumber, createIdGenerator,isEscapeKey, showAlert, debounce};
