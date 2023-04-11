@@ -1,5 +1,6 @@
 import { createMiniatures } from './miniatures.js';
 import { debounce } from './util.js';
+import { openBP } from './open-picture.js';
 
 const RANDOM_PICTURE_COUNT = 10;
 const RERENDER_DELAY = 500;
@@ -11,13 +12,13 @@ const picturesContainer = document.querySelector('.pictures');
 const compareCommentsLength = (picA, picB) => picB.comments.length - picA.comments.length;
 
 const clearPictures = () => {
-  let pictureElement = picturesContainer.querySelector('.picture');
+  const pictureElements = picturesContainer.querySelectorAll('.picture');
 
-  while (pictureElement) {
+  pictureElements.forEach((pictureElement) => {
     picturesContainer.removeChild(pictureElement);
-    pictureElement = picturesContainer.querySelector('.picture');
-  }
+  });
 };
+
 
 const getRandomPhotos = (photos) => {
   const randomPhotos = [];
@@ -61,6 +62,7 @@ const getFiltersClassChange = () => {
 const debouncedPhotoRender = debounce((photos) => {
   clearPictures();
   createMiniatures(photos);
+  openBP(photos);
 }, RERENDER_DELAY);
 
 const getFiltersRender = (photos) => {
@@ -80,8 +82,7 @@ const getFiltersRender = (photos) => {
   });
 };
 
-export { getFiltersClassChange,getFiltersRender };
-
+export { getFiltersClassChange, getFiltersRender };
 
 /*const gallery = document.getElementById('.pictures');
 const defaultBtn = document.getElementById('#filter-default');

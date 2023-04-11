@@ -34,6 +34,20 @@ const openBP = (renderData) => {
   userOpenPictures.forEach((previewPicture) => {
     function openBigPicture () {
 
+      //Закрытие большой фотографии
+      function closeUserModal () {
+        bigPicture.classList.add('hidden');
+        body.classList.remove('modal-open');
+        document.removeEventListener('keydown', onDocumentKeydown);
+      }
+      //8.15 убираем класс у счётчика комментариев и загрузки новых комментариев
+      socialCommentsCount.classList.remove('hidden');
+      commentsLoader.classList.remove('hidden');
+
+      closeBigPicture.addEventListener('click', () => {
+        closeUserModal();
+      });
+
       //Отображение комментариев
       const getCommentItem = (element) => {
         socialComments.textContent = '';
@@ -89,11 +103,10 @@ const openBP = (renderData) => {
           evt.preventDefault();
           closeUserModal();
         }
-      }; //1. завести переменную
-      //2. скопировать в переменную из п 1 ссылку на функцию из строки 87
-      //3. функцию 117 передать в переменную из шага 1
-      //const onCancelButtonClick = onDocumentEscKeydown;
-      //onCancelButtonClick();
+      };
+      //onDocumentKeydown = onDocumentEscKeydown;
+      //onDocumentKeydown();
+
       //Поиск в массиве совпадения айди
       const kekstagramPost = renderData.find((element) => element.id == previewPicture.id);
       bigPictureImg.src = kekstagramPost.url;
@@ -104,19 +117,6 @@ const openBP = (renderData) => {
       getSocialComment(kekstagramPost.comments);
       body.classList.add('modal-open');
       document.addEventListener('keydown', onDocumentEscKeydown);
-    }
-    //Закрытие большой фотографии
-    function closeUserModal () {
-      bigPicture.classList.add('hidden');
-      //8.15 убираем класс у счётчика комментариев и загрузки новых комментариев
-      socialCommentsCount.classList.remove('hidden');
-      commentsLoader.classList.remove('hidden');
-
-      closeBigPicture.addEventListener('click', () => {
-        closeUserModal();
-      });
-      body.classList.remove('modal-open');
-      document.removeEventListener('keydown', onCancelButtonClick);
     }
 
     previewPicture.addEventListener('click', () => {
