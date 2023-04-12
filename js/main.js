@@ -4,9 +4,7 @@ import {getData, sendData} from './api.js';
 import {closeImgEditor ,onFormSubmit, showFullErrorMessage, showFullSuccessMessage} from './form.js';
 import {showAlert} from './util.js';
 import { getFiltersClassChange, getFiltersRender } from './sort-photos.js';
-
-import './open-picture.js';
-import './form.js';
+import './upload-photo.js';
 
 createMiniatures(fillTheArray);
 

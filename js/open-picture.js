@@ -9,7 +9,7 @@ import {SIZE, MIN_VALUE, STEP} from './data.js';
 
 //Ждем загрузки страницы и только после этого начинаем искать нужный нам элемент и вешать все обработчики
 
-const openBP = (renderData) => {
+const setOpenFormListener = (renderData) => {
 
   const bigPicture = document.querySelector('.big-picture');
   const bigPictureImg = document.querySelector('.big-picture__img img');
@@ -38,7 +38,7 @@ const openBP = (renderData) => {
       function closeUserModal () {
         bigPicture.classList.add('hidden');
         body.classList.remove('modal-open');
-        document.removeEventListener('keydown', onDocumentKeydown);
+        document.removeEventListener('keydown', onClosePictureClick);
       }
       //8.15 убираем класс у счётчика комментариев и загрузки новых комментариев
       socialCommentsCount.classList.remove('hidden');
@@ -104,9 +104,10 @@ const openBP = (renderData) => {
           closeUserModal();
         }
       };
-      //onDocumentKeydown = onDocumentEscKeydown;
-      //onDocumentKeydown();
 
+      function onClosePictureClick () {
+        onDocumentEscKeydown();
+      }
       //Поиск в массиве совпадения айди
       const kekstagramPost = renderData.find((element) => element.id == previewPicture.id);
       bigPictureImg.src = kekstagramPost.url;
@@ -126,6 +127,6 @@ const openBP = (renderData) => {
   });
 };
 document.addEventListener('DOMContentLoaded', () => {
-  openBP(fillTheArray);
+  setOpenFormListener(fillTheArray);
 });
-export {openBP};
+export {setOpenFormListener};
