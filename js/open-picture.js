@@ -34,6 +34,20 @@ const setOpenFormListener = (renderData) => {
   userOpenPictures.forEach((previewPicture) => {
     function openBigPicture () {
 
+      //Закрытие большой фотографии
+      function closeUserModal () {
+        bigPicture.classList.add('hidden');
+        body.classList.remove('modal-open');
+        document.removeEventListener('keydown', onClosePictureClick);
+      }
+      //8.15 убираем класс у счётчика комментариев и загрузки новых комментариев
+      socialCommentsCount.classList.remove('hidden');
+      commentsLoader.classList.remove('hidden');
+
+      closeBigPicture.addEventListener('click', () => {
+        closeUserModal();
+      });
+
       //Отображение комментариев
       const getCommentItem = (element) => {
         socialComments.textContent = '';
@@ -83,9 +97,6 @@ const setOpenFormListener = (renderData) => {
         socialComments.appendChild(commentFragment);
       };
 
-      /*const onClosePictureClick = onDocumentEscKeydown;
-      onClosePictureClick();
-*/
       //Закрытие на клавишу ESC
       const onDocumentEscKeydown = (evt) => {
         if (isEscapeKey(evt)) {
@@ -94,6 +105,9 @@ const setOpenFormListener = (renderData) => {
         }
       };
 
+      function onClosePictureClick () {
+        onDocumentEscKeydown();
+      }
       //Поиск в массиве совпадения айди
       const kekstagramPost = renderData.find((element) => element.id == previewPicture.id);
       bigPictureImg.src = kekstagramPost.url;
@@ -106,19 +120,6 @@ const setOpenFormListener = (renderData) => {
       document.addEventListener('keydown', onDocumentEscKeydown);
     }
 
-    //Закрытие большой фотографии
-    function closeUserModal () {
-      bigPicture.classList.add('hidden');
-      body.classList.remove('modal-open');
-      document.removeEventListener('keydown', onDocumentKeydown);
-    }
-    //8.15 убираем класс у счётчика комментариев и загрузки новых комментариев
-    socialCommentsCount.classList.remove('hidden');
-    commentsLoader.classList.remove('hidden');
-
-    closeBigPicture.addEventListener('click', () => {
-      closeUserModal();
-    });
     previewPicture.addEventListener('click', () => {
       openBigPicture();
     });
