@@ -5,25 +5,24 @@ import { fillTheArray } from './data.js';
 import {SIZE, MIN_VALUE, STEP} from './data.js';
 
 
-// Добавление возможности просмотра фотографий в полноэкранном режиме
+const bigPicture = document.querySelector('.big-picture');
+const bigPictureImg = document.querySelector('.big-picture__img img');
+const bigPictureLikes = document.querySelector('.likes-count');
+
+const closeBigPicture = document.querySelector('.big-picture__cancel');
+
+const bigPictureComments = document.querySelector('.comments-count');
+const socialComments = bigPicture.querySelector('.social__comments');
+
+const bigPictureDescription = document.querySelector('.social__caption'); //описание фотографий
+const socialCommentsCount = document.querySelector('.social__comment-count'); //счётчик комментариев
+const commentsLoader = document.querySelector('.comments-loader'); //загрузка новых комментариев
+const body = document.querySelector('body');
 
 //Ждем загрузки страницы и только после этого начинаем искать нужный нам элемент и вешать все обработчики
 
 const setOpenFormListener = (renderData) => {
 
-  const bigPicture = document.querySelector('.big-picture');
-  const bigPictureImg = document.querySelector('.big-picture__img img');
-  const bigPictureLikes = document.querySelector('.likes-count');
-
-  const closeBigPicture = document.querySelector('.big-picture__cancel');
-
-  const bigPictureComments = document.querySelector('.comments-count');
-  const socialComments = bigPicture.querySelector('.social__comments');
-
-  const bigPictureDescription = document.querySelector('.social__caption'); //описание фотографий
-  const socialCommentsCount = document.querySelector('.social__comment-count'); //счётчик комментариев
-  const commentsLoader = document.querySelector('.comments-loader'); //загрузка новых комментариев
-  const body = document.querySelector('body');
   let socialCommentsCopy = '';
 
 
