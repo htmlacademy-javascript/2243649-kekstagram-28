@@ -82,10 +82,10 @@ const setOpenFormListener = (renderData) => {
             secondCommentFragment.appendChild(socialCommentsCopy);
             if (element === elements[elements.length - 1]) {
               commentsLoader.classList.add('hidden');
-              socialCommentsCount.innerHTML = `${elements.length} из <span class='comments-count'>${elements.length}</span> комментариев`;
+              socialCommentsCount.textContent = `${elements.length} из ${elements.length} комментариев`;
             } else {
               commentsLoader.classList.remove('hidden');
-              socialCommentsCount.innerHTML = `${quantityComment} из <span class='comments-count'>${elements.length}</span> комментариев`;
+              socialCommentsCount.textContent = `${quantityComment} из ${elements.length} комментариев`;
             }
             return secondCommentFragment;
           });
