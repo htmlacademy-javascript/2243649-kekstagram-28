@@ -22,22 +22,6 @@ const createIdGenerator = () => {
   };
 };
 
-//Функция для уникального числа
-const getUniqueNumber = (min, max) => {
-  const previousValues = [];
-  return function () {
-    let currentValue = getRandomNumber(min, max);
-    if (previousValues.length > (max - min + 1)) {
-      return null;
-    }
-    while (previousValues.includes(currentValue)) {
-      currentValue = getRandomNumber(min, max);
-    }
-    previousValues.push(currentValue);
-    return currentValue;
-  };
-};
-
 //Функция проверки нажатой клавиши ESC
 const isEscapeKey = (evt) => evt.key === 'Escape';
 
@@ -71,4 +55,4 @@ const debounce = (callback, timeoutDelay = 500) => {
 };
 
 
-export {getRandomArrayNumber, getRandomNumber, getUniqueNumber, createIdGenerator,isEscapeKey, showAlert, debounce};
+export {getRandomArrayNumber, getRandomNumber, createIdGenerator,isEscapeKey, showAlert, debounce};
