@@ -35,12 +35,7 @@ const getRandomPhotos = (photos) => {
   return randomPhotos;
 };
 
-const getSortedPhotos = (photos) => {
-
-  const SortedPhotos = photos.slice().sort(compareCommentsLength);
-
-  return SortedPhotos;
-};
+const getSortedPhotos = (photos) => photos.slice().sort(compareCommentsLength);
 
 const getFiltersClassChange = () => {
 

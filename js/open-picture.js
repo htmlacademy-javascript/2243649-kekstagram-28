@@ -5,25 +5,24 @@ import { fillTheArray } from './data.js';
 import {SIZE, MIN_VALUE, STEP} from './data.js';
 
 
-// Добавление возможности просмотра фотографий в полноэкранном режиме
+const bigPicture = document.querySelector('.big-picture');
+const bigPictureImg = document.querySelector('.big-picture__img img');
+const bigPictureLikes = document.querySelector('.likes-count');
+
+const closeBigPicture = document.querySelector('.big-picture__cancel');
+
+const bigPictureComments = document.querySelector('.comments-count');
+const socialComments = bigPicture.querySelector('.social__comments');
+
+const bigPictureDescription = document.querySelector('.social__caption'); //описание фотографий
+const socialCommentsCount = document.querySelector('.social__comment-count'); //счётчик комментариев
+const commentsLoader = document.querySelector('.comments-loader'); //загрузка новых комментариев
+const body = document.querySelector('body');
 
 //Ждем загрузки страницы и только после этого начинаем искать нужный нам элемент и вешать все обработчики
 
 const setOpenFormListener = (renderData) => {
 
-  const bigPicture = document.querySelector('.big-picture');
-  const bigPictureImg = document.querySelector('.big-picture__img img');
-  const bigPictureLikes = document.querySelector('.likes-count');
-
-  const closeBigPicture = document.querySelector('.big-picture__cancel');
-
-  const bigPictureComments = document.querySelector('.comments-count');
-  const socialComments = bigPicture.querySelector('.social__comments');
-
-  const bigPictureDescription = document.querySelector('.social__caption'); //описание фотографий
-  const socialCommentsCount = document.querySelector('.social__comment-count'); //счётчик комментариев
-  const commentsLoader = document.querySelector('.comments-loader'); //загрузка новых комментариев
-  const body = document.querySelector('body');
   let socialCommentsCopy = '';
 
 
@@ -35,11 +34,11 @@ const setOpenFormListener = (renderData) => {
     function openBigPicture () {
 
       //Закрытие большой фотографии
-      function closeUserModal () {
+      const closeUserModal = () => {
         bigPicture.classList.add('hidden');
         body.classList.remove('modal-open');
         document.removeEventListener('keydown', onClosePictureClick);
-      }
+      };
       //8.15 убираем класс у счётчика комментариев и загрузки новых комментариев
       socialCommentsCount.classList.remove('hidden');
       commentsLoader.classList.remove('hidden');
@@ -83,10 +82,10 @@ const setOpenFormListener = (renderData) => {
             secondCommentFragment.appendChild(socialCommentsCopy);
             if (element === elements[elements.length - 1]) {
               commentsLoader.classList.add('hidden');
-              socialCommentsCount.innerHTML = `${elements.length} из <span class='comments-count'>${elements.length}</span> комментариев`;
+              socialCommentsCount.textContent = `${elements.length} из ${elements.length} комментариев`;
             } else {
               commentsLoader.classList.remove('hidden');
-              socialCommentsCount.innerHTML = `${quantityComment} из <span class='comments-count'>${elements.length}</span> комментариев`;
+              socialCommentsCount.textContent = `${quantityComment} из ${elements.length} комментариев`;
             }
             return secondCommentFragment;
           });
@@ -109,13 +108,13 @@ const setOpenFormListener = (renderData) => {
         onDocumentEscKeydown();
       }
       //Поиск в массиве совпадения айди
-      const kekstagramPost = renderData.find((element) => element.id == previewPicture.id);
-      bigPictureImg.src = kekstagramPost.url;
-      bigPictureLikes.textContent = kekstagramPost.likes;
-      bigPictureComments.textContent = kekstagramPost.comments.length;
-      bigPictureDescription.textContent = kekstagramPost.description;
+      const renderBigPicture = renderData.find((element) => element.id === Number(previewPicture.id));
+      bigPictureImg.src = renderBigPicture.url;
+      bigPictureLikes.textContent = renderBigPicture.likes;
+      bigPictureComments.textContent = renderBigPicture.comments.length;
+      bigPictureDescription.textContent = renderBigPicture.description;
       bigPicture.classList.remove('hidden');
-      getSocialComment(kekstagramPost.comments);
+      getSocialComment(renderBigPicture.comments);
       body.classList.add('modal-open');
       document.addEventListener('keydown', onDocumentEscKeydown);
     }

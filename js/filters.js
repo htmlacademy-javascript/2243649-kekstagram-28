@@ -28,12 +28,9 @@ const updateSlider = () => {
     step: chosenEffect.step,
     start: chosenEffect.max,
   });
-
-  if (isDefault()) {
-    hideSlider();
-  } else {
-    showSlider();
-  }
+  previewImage.style.filter = isDefault()
+    ? hideSlider ()
+    : showSlider();
 };
 
 const resetEffects = () => {
