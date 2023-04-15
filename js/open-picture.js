@@ -34,11 +34,11 @@ const setOpenFormListener = (renderData) => {
     function openBigPicture () {
 
       //Закрытие большой фотографии
-      function closeUserModal () {
+      const closeUserModal = () => {
         bigPicture.classList.add('hidden');
         body.classList.remove('modal-open');
         document.removeEventListener('keydown', onClosePictureClick);
-      }
+      };
       //8.15 убираем класс у счётчика комментариев и загрузки новых комментариев
       socialCommentsCount.classList.remove('hidden');
       commentsLoader.classList.remove('hidden');
