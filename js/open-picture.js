@@ -108,13 +108,13 @@ const setOpenFormListener = (renderData) => {
         onDocumentEscKeydown();
       }
       //Поиск в массиве совпадения айди
-      const kekstagramPost = renderData.find((element) => element.id === Number(previewPicture.id));
-      bigPictureImg.src = kekstagramPost.url;
-      bigPictureLikes.textContent = kekstagramPost.likes;
-      bigPictureComments.textContent = kekstagramPost.comments.length;
-      bigPictureDescription.textContent = kekstagramPost.description;
+      const renderBigPicture = renderData.find((element) => element.id === Number(previewPicture.id));
+      bigPictureImg.src = renderBigPicture.url;
+      bigPictureLikes.textContent = renderBigPicture.likes;
+      bigPictureComments.textContent = renderBigPicture.comments.length;
+      bigPictureDescription.textContent = renderBigPicture.description;
       bigPicture.classList.remove('hidden');
-      getSocialComment(kekstagramPost.comments);
+      getSocialComment(renderBigPicture.comments);
       body.classList.add('modal-open');
       document.addEventListener('keydown', onDocumentEscKeydown);
     }
