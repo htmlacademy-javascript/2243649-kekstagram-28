@@ -108,7 +108,7 @@ const setOpenFormListener = (renderData) => {
         onDocumentEscKeydown();
       }
       //Поиск в массиве совпадения айди
-      const kekstagramPost = renderData.find((element) => element.id == previewPicture.id);
+      const kekstagramPost = renderData.find((element) => element.id === Number(previewPicture.id));
       bigPictureImg.src = kekstagramPost.url;
       bigPictureLikes.textContent = kekstagramPost.likes;
       bigPictureComments.textContent = kekstagramPost.comments.length;
